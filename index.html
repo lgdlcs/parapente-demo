@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aéris Parapente — 5 directions de design · démo alt-tab studio</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    :root { --ink:#1b2533; --muted:#5c6675; --line:#e2ded5; --canvas:#f6f4f0; --surface:#fff; --accent:#e0892a; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font:16px/1.6 "Hanken Grotesk", system-ui, sans-serif; color:var(--ink); background:var(--canvas); padding:clamp(2rem,5vw,5rem) 1.5rem; }
+    .wrap { max-width:980px; margin-inline:auto; }
+    .kicker { font-size:.74rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+    h1 { font-size:clamp(1.8rem,1.3rem + 2.5vw,2.8rem); line-height:1.1; margin:.6rem 0 .8rem; letter-spacing:-.02em; }
+    .lead { color:var(--muted); max-width:62ch; margin-bottom:1rem; }
+    .demo-flag { display:inline-block; background:#fff4e6; border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line)); color:#8a5410; font-size:.8rem; padding:.4rem .8rem; border-radius:8px; margin-bottom:2.4rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.1rem; }
+    .card { display:block; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:1.5rem 1.5rem 1.6rem; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; color:inherit; text-decoration:none; }
+    .card:hover { transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(20,30,45,.35); border-color:color-mix(in srgb, var(--accent) 45%, var(--line)); }
+    .card__no { font-size:.72rem; font-weight:700; letter-spacing:.12em; color:var(--accent); }
+    .card h2 { font-size:1.3rem; margin:.35rem 0 .5rem; letter-spacing:-.01em; }
+    .card p { font-size:.92rem; color:var(--muted); }
+    .card__go { display:inline-flex; align-items:center; gap:.35rem; margin-top:1rem; font-size:.85rem; font-weight:600; color:var(--ink); }
+    .card:hover .card__go { color:var(--accent); }
+    .note { margin-top:2.5rem; font-size:.85rem; color:var(--muted); border-top:1px solid var(--line); padding-top:1.2rem; }
+    .note a { color:var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="kicker">alt-tab studio · démo de design</p>
+    <h1>Aéris Parapente — 5 directions de design</h1>
+    <p class="lead">Le même site vitrine d’école de parapente, décliné en cinq partis pris visuels distincts
+       (hero, navbar, cards, typographie, motion). Choisissez la direction qui vous parle.</p>
+    <p class="demo-flag">⚠︎ Exemple fictif — « Aéris Parapente » n’est pas une école réelle. Contenu, tarifs et avis sont de démonstration.</p>
+
+    <div class="grid">
+      <a class="card" href="cinema/">
+        <span class="card__no">01 · Vidéo</span>
+        <h2>Cinéma</h2>
+        <p>Hero vidéo plein écran, navbar centrée, cards immersives (texte révélé sur l’image au survol).</p>
+        <span class="card__go">Ouvrir <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="card" href="magazine/">
+        <span class="card__no">02 · Photo</span>
+        <h2>Magazine</h2>
+        <p>Hero photo éditorial aligné en bas + bandeau défilant, navbar « pill » flottante, stages en lignes.</p>
+        <span class="card__go">Ouvrir <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="card" href="split/">
+        <span class="card__no">03 · CTA + photo</span>
+        <h2>Split</h2>
+        <p>Hero deux colonnes lumineux (texte + photo latérale, badge avis), navbar claire, cards « feature ».</p>
+        <span class="card__go">Ouvrir <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="card" href="anime/">
+        <span class="card__no">04 · Animation</span>
+        <h2>Anime</h2>
+        <p>Hero ciel animé (nuages CSS + voile pilotée par anime.js), entrée du titre et des cards en cascade.</p>
+        <span class="card__go">Ouvrir <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="card" href="surprise/">
+        <span class="card__no">05 · Carte blanche</span>
+        <h2>Carnet d’altitude</h2>
+        <p>Courbes de niveau qui se tracent, repères de vol en monospace, gros titres serif. Direction éditoriale topographique.</p>
+        <span class="card__go">Ouvrir <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+
+    <p class="note">Démo générée par <code>build-demo.py</code> à partir du modèle <code>versions/</code> (placeholders
+       <code>{{VAR}}</code> remplacés). Réalisé par <a href="https://lgdlcs.github.io/alt-tab-studio/" target="_blank" rel="noopener">alt-tab studio</a>.</p>
+  </div>
+</body>
+</html>
