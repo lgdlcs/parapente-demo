@@ -91,14 +91,64 @@
       <span class="cloud cloud--1"></span>
       <span class="cloud cloud--2"></span>
       <span class="cloud cloud--3"></span>
-      <span class="hero__ridge"></span>
-      <svg class="hero__glider" viewBox="0 0 120 90" width="120" height="90" aria-hidden="true">
-        <path d="M6,30 Q40,2 60,8 Q80,2 114,30 Q60,48 6,30 Z" fill="#ffffff" opacity=".96"/>
+
+      <!-- Volée d'oiseaux qui traverse le ciel -->
+      <svg class="hero__birds" viewBox="0 0 120 40" width="120" height="40" aria-hidden="true">
+        <path class="bird" d="M2,14 Q9,4 16,14 Q23,4 30,14" fill="none" stroke="rgba(30,40,30,.55)" stroke-width="2" stroke-linecap="round"/>
+        <path class="bird" d="M40,24 Q46,16 52,24 Q58,16 64,24" fill="none" stroke="rgba(30,40,30,.5)" stroke-width="1.8" stroke-linecap="round"/>
+        <path class="bird" d="M74,12 Q80,5 86,12 Q92,5 98,12" fill="none" stroke="rgba(30,40,30,.45)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+
+      <!-- Décor montagne + sports de glisse (slice = couvre toute la largeur, ancré en bas) -->
+      <svg class="hero__mountains" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <!-- Chaîne lointaine, enneigée -->
+        <path fill="#aec8db" d="M0,316 L150,232 L286,300 L420,210 L560,300 L700,214 L840,298 L980,206 L1130,286 L1270,220 L1440,272 L1440,600 L0,600 Z"/>
+        <path fill="#ffffff" opacity=".9" d="M420,210 L452,250 L388,250 Z M700,214 L734,256 L668,256 Z M980,206 L1014,250 L948,250 Z"/>
+        <!-- Chaîne intermédiaire -->
+        <path fill="#7593aa" d="M0,392 L170,300 L320,372 L470,250 L610,344 L760,262 L900,350 L1060,272 L1210,360 L1360,296 L1440,344 L1440,600 L0,600 Z"/>
+        <path fill="#ffffff" opacity=".95" d="M470,250 L506,300 L434,300 Z M760,262 L794,308 L726,308 Z M1060,272 L1092,316 L1028,316 Z"/>
+        <!-- Piste de ski damée (descend vers la droite depuis le pic central) -->
+        <path fill="#eef5fb" opacity=".62" d="M468,256 L512,256 L724,560 L654,560 Z"/>
+        <!-- Snowboarder qui descend la piste (animé par anime.js) -->
+        <g class="hero__boarder">
+          <g transform="translate(488,268) scale(2.2)">
+            <ellipse cx="0" cy="9" rx="9" ry="2.4" fill="#1c1408" transform="rotate(24)"/>
+            <circle cx="-1" cy="-6" r="3.1" fill="#1c1408"/>
+            <path d="M-1,-3 L-2,5 M-1,-3 L5,2" stroke="#1c1408" stroke-width="2.1" stroke-linecap="round" fill="none"/>
+            <path d="M-1,-1 L-6,-3 M-1,-1 L4,-4" stroke="#1c1408" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          </g>
+        </g>
+        <!-- Avant-plan boisé -->
+        <path fill="var(--ridge, #21351f)" d="M0,540 L130,486 L270,528 L410,476 L560,520 L710,470 L860,520 L1010,474 L1160,522 L1320,484 L1440,520 L1440,600 L0,600 Z"/>
+        <!-- Sapins -->
+        <g fill="#18271605" stroke="none">
+          <g fill="#16241a">
+            <path d="M120,512 l14,26 h-28 Z M120,500 l11,20 h-22 Z"/>
+            <path d="M360,506 l16,30 h-32 Z M360,492 l12,22 h-24 Z"/>
+            <path d="M620,510 l13,26 h-26 Z M620,498 l10,20 h-20 Z"/>
+            <path d="M900,508 l15,28 h-30 Z M900,495 l11,22 h-22 Z"/>
+            <path d="M1180,512 l14,26 h-28 Z M1180,500 l11,20 h-22 Z"/>
+            <path d="M1320,520 l12,24 h-24 Z"/>
+          </g>
+        </g>
+      </svg>
+
+      <!-- Parapentes (animés) -->
+      <svg class="hero__glider hero__glider--1" viewBox="0 0 120 90" width="120" height="90" aria-hidden="true">
+        <path d="M6,30 Q40,2 60,8 Q80,2 114,30 Q60,48 6,30 Z" fill="#ff7a59" opacity=".97"/>
         <path d="M6,30 Q60,40 114,30" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="1"/>
         <line x1="16" y1="31" x2="54" y2="68" stroke="rgba(255,255,255,.85)" stroke-width="1.2"/>
         <line x1="60" y1="12" x2="56" y2="68" stroke="rgba(255,255,255,.85)" stroke-width="1.2"/>
         <line x1="104" y1="31" x2="60" y2="68" stroke="rgba(255,255,255,.85)" stroke-width="1.2"/>
         <circle cx="56" cy="72" r="6" fill="#1f2a22"/>
+      </svg>
+      <svg class="hero__glider hero__glider--2" viewBox="0 0 120 90" width="120" height="90" aria-hidden="true">
+        <path d="M6,30 Q40,2 60,8 Q80,2 114,30 Q60,48 6,30 Z" fill="#ffffff" opacity=".92"/>
+        <path d="M6,30 Q60,40 114,30" fill="none" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
+        <line x1="16" y1="31" x2="54" y2="68" stroke="rgba(255,255,255,.8)" stroke-width="1.1"/>
+        <line x1="60" y1="12" x2="56" y2="68" stroke="rgba(255,255,255,.8)" stroke-width="1.1"/>
+        <line x1="104" y1="31" x2="60" y2="68" stroke="rgba(255,255,255,.8)" stroke-width="1.1"/>
+        <circle cx="56" cy="72" r="5.5" fill="#26343a"/>
       </svg>
     </div>
     <div class="hero__overlay"></div>

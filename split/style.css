@@ -108,9 +108,13 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.08; l
 .hero__trust strong { color:var(--ink); }
 .hero__trust-stars { color:#f5a623; letter-spacing:1px; }
 .hero__media { position:relative; }
-.hero__media img { width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:calc(var(--radius) + 8px); box-shadow:var(--shadow); animation:heroRise 1s var(--ease) both; }
-@keyframes heroRise { from{opacity:0;transform:translateY(28px) scale(.98);} to{opacity:1;transform:none;} }
-.hero__badge { position:absolute; left:-1.2rem; bottom:1.8rem; display:grid; justify-items:center; gap:.1rem; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:.9rem 1.3rem; box-shadow:var(--shadow); animation:heroRise 1.2s var(--ease) both; }
+/* hauteur maîtrisée (l'image portrait 4/5 était bien trop haute) */
+.hero__media img { width:100%; height:clamp(360px,56vh,520px); object-fit:cover; border-radius:calc(var(--radius) + 8px); box-shadow:var(--shadow); }
+.hero__badge { position:absolute; left:-1.2rem; bottom:1.8rem; display:grid; justify-items:center; gap:.1rem; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:.9rem 1.3rem; box-shadow:var(--shadow); }
+/* Masque d'entrée piloté par anime.js (retiré si anime absent / reduced-motion) */
+html.anime-on .hero__content > *,
+html.anime-on .hero__media,
+html.anime-on #stageCards .card { opacity:0; }
 .hero__badge-stars { color:#f5a623; letter-spacing:1.5px; font-size:.95rem; }
 .hero__badge-score { font-family:var(--font-display); font-size:1.7rem; font-weight:800; line-height:1; color:var(--ink); }
 .hero__badge-count { font-size:.74rem; color:var(--muted); }
@@ -263,7 +267,7 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.08; l
   .contact { grid-template-columns:1fr; }
   .hero__grid { grid-template-columns:1fr; min-height:0; gap:2.5rem; }
   .hero__media { order:-1; max-width:480px; }
-  .hero__media img { aspect-ratio:5/4; }
+  .hero__media img { height:clamp(300px,42vh,420px); }
 }
 @media (max-width:760px) {
   .nav__burger { display:flex; }
@@ -287,6 +291,9 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.08; l
   html { scroll-behavior:auto; }
   *,*::before,*::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
   [data-reveal] { opacity:1; transform:none; }
+  html.anime-on .hero__content > *,
+  html.anime-on .hero__media,
+  html.anime-on #stageCards .card { opacity:1; }
   .reviews { overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
   .reviews__track { animation:none; }
   .review { scroll-snap-align:start; }

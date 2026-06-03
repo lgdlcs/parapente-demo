@@ -100,7 +100,7 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.06; l
 .nav--scrolled .nav__burger span { background:var(--ink); }
 
 /* ---------- Hero ANIMÉ (ciel + voile) ---------- */
-.hero { position:relative; min-height:100svh; display:flex; align-items:center; color:#fff; isolation:isolate; overflow:hidden; }
+.hero { --ridge:color-mix(in srgb, var(--primary) 86%, #06100a); position:relative; min-height:100svh; display:flex; align-items:center; color:#fff; isolation:isolate; overflow:hidden; }
 .hero__sky { position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg, #1f5f9e 0%, #3f86c4 32%, #88bce0 62%, #d7ecf2 84%, #eef4e6 100%); }
 .hero__sun { position:absolute; top:16%; right:15%; width:130px; height:130px; border-radius:50%; background:radial-gradient(circle, #fff7e6 0%, #ffe1a0 55%, rgba(255,225,160,0) 72%); animation:sunPulse 7s ease-in-out infinite; }
 @keyframes sunPulse { 0%,100%{transform:scale(1);opacity:.92;} 50%{transform:scale(1.08);opacity:1;} }
@@ -110,10 +110,15 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.06; l
 .cloud--2 { top:44%; transform:scale(1); animation:drift 48s linear infinite; animation-delay:-20s; opacity:.85; }
 .cloud--3 { top:62%; transform:scale(2.1); animation:drift 86s linear infinite; animation-delay:-46s; opacity:.7; }
 @keyframes drift { from{left:-22%;} to{left:122%;} }
-.hero__ridge { position:absolute; left:0; right:0; bottom:0; height:30%; z-index:-1;
-  background:linear-gradient(180deg, color-mix(in srgb, var(--primary) 78%, #000) 0%, color-mix(in srgb, var(--primary) 92%, #000) 100%);
-  clip-path:polygon(0% 100%, 0% 52%, 10% 64%, 20% 38%, 31% 58%, 42% 28%, 54% 56%, 66% 34%, 78% 60%, 88% 44%, 100% 62%, 100% 100%); }
-.hero__glider { position:absolute; top:30%; left:8%; width:clamp(90px,10vw,140px); height:auto; z-index:0; filter:drop-shadow(0 10px 16px rgba(0,0,0,.25)); }
+/* Décor montagne : couvre toute la largeur, ancré en bas du hero */
+.hero__mountains { position:absolute; left:0; right:0; bottom:0; width:100%; height:66%; z-index:0; }
+.hero__boarder { will-change:transform; }
+/* Oiseaux + parapentes (animés par anime.js) */
+.hero__birds { position:absolute; top:21%; left:0; width:clamp(80px,9vw,130px); height:auto; z-index:1; }
+.hero__birds .bird { transform-box:fill-box; transform-origin:center; }
+.hero__glider { position:absolute; width:clamp(80px,9vw,130px); height:auto; z-index:2; filter:drop-shadow(0 10px 16px rgba(0,0,0,.25)); }
+.hero__glider--1 { top:25%; left:0; }
+.hero__glider--2 { top:45%; left:0; width:clamp(52px,6vw,84px); opacity:.92; }
 .hero__overlay { position:absolute; inset:0; z-index:-1; background:linear-gradient(120deg, rgba(15,30,45,.45) 0%, rgba(15,30,45,.12) 45%, transparent 70%); }
 .hero__content { position:relative; z-index:1; padding-block:9rem 8rem; max-width:760px; }
 .hero__title { font-size:clamp(2.6rem, 1.5rem + 5vw, 5.4rem); font-weight:800; line-height:1.0; letter-spacing:-.03em; text-wrap:balance; text-shadow:0 2px 30px rgba(0,0,0,.3); }

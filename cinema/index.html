@@ -25,6 +25,10 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <!-- Locomotive Scroll (défilement fluide + parallaxe). Désactivé si prefers-reduced-motion. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js" defer></script>
+
   <!-- SEO — données structurées de l'école (remplir avec les {{VAR}}) -->
   <script type="application/ld+json">
   {
@@ -77,6 +81,9 @@
     </div>
   </header>
 
+  <!-- Conteneur Locomotive : la navbar, le WhatsApp flottant et la lightbox restent HORS du conteneur
+       (sinon le position:fixed casse sous la transformation de Locomotive). -->
+  <div data-scroll-container>
   <main id="main">
 
   <!-- ============ HERO VIDÉO ============ -->
@@ -88,7 +95,7 @@
     </video>
     <div class="hero__overlay"></div>
     <div class="hero__bars" aria-hidden="true"></div>
-    <div class="wrap hero__content">
+    <div class="wrap hero__content" data-scroll data-scroll-speed="1.6">
       <p class="eyebrow eyebrow--light" data-reveal>Annecy · Haute-Savoie</p>
       <h1 class="hero__title" data-reveal>Volez au-dessus du lac d’Annecy.</h1>
       <p class="hero__sub" data-reveal>Baptêmes en biplace et stages de pilotage, encadrés par des moniteurs diplômés d’État. Décollage face au lac et aux sommets — le grand frisson, en toute confiance.</p>
@@ -366,6 +373,7 @@
       <span class="footer__credit">Maquette réalisée par <a href="https://lgdlcs.github.io/alt-tab-studio/" target="_blank" rel="noopener">alt-tab studio</a></span>
     </div>
   </footer>
+  </div><!-- /[data-scroll-container] -->
 
   <!-- Bouton de contact flottant. PAR DÉFAUT : WhatsApp. Si le prospect N'A PAS de WhatsApp,
        supprime ce bloc et décommente la « variante appel » juste en dessous. -->

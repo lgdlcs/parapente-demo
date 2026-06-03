@@ -12,14 +12,11 @@
     if (src) src.addEventListener("error", function () { heroVideo.style.display = "none"; });
   }
 
-  /* ---------- Navbar : état au scroll ---------- */
+  /* ---------- Navbar : état au scroll (fonctionne en natif ET via Locomotive) ---------- */
   var nav = document.getElementById("nav");
-  function onScroll() {
-    if (window.scrollY > 40) nav.classList.add("nav--scrolled");
-    else nav.classList.remove("nav--scrolled");
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  function setNav(y) { nav.classList.toggle("nav--scrolled", y > 40); }
+  window.addEventListener("scroll", function () { setNav(window.scrollY); }, { passive: true });
+  setNav(window.scrollY);
 
   /* ---------- Menu burger (mobile) ---------- */
   var burger = document.getElementById("burger");
@@ -169,4 +166,37 @@
         });
     });
   }
+
+  /* ---------- Locomotive Scroll : défilement fluide + parallaxe du hero ----------
+     Chargé en defer → on initialise au load. Hors reduced-motion ; sur mobile/tablette
+     le smooth est désactivé (perf). Si le CDN échoue, on garde le scroll natif. */
+  function forceReveal() {
+    var h = window.innerHeight * 0.9;
+    Array.prototype.forEach.call(revealEls, function (el) {
+      if (!el.classList.contains("is-visible") && el.getBoundingClientRect().top < h) el.classList.add("is-visible");
+    });
+  }
+  function initLoco() {
+    if (reduceMotion || !window.LocomotiveScroll) return;
+    var el = document.querySelector("[data-scroll-container]");
+    if (!el) return;
+    try {
+      var scroll = new LocomotiveScroll({
+        el: el, smooth: true, lerp: 0.085, multiplier: 0.95,
+        smartphone: { smooth: false }, tablet: { smooth: false }
+      });
+      scroll.on("scroll", function (args) { setNav(args.scroll.y); forceReveal(); });
+      Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function (a) {
+        a.addEventListener("click", function (e) {
+          var id = a.getAttribute("href");
+          if (id.length < 2) { e.preventDefault(); scroll.scrollTo(0); return; }
+          var t = document.querySelector(id);
+          if (t) { e.preventDefault(); scroll.scrollTo(t, { offset: -74 }); }
+        });
+      });
+      setTimeout(function () { scroll.update(); }, 600);
+    } catch (err) { /* fallback : scroll natif */ }
+  }
+  if (document.readyState === "complete") initLoco();
+  else window.addEventListener("load", initLoco);
 })();

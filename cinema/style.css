@@ -130,20 +130,23 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.04; l
 .btn:active { transform:translateY(1px) scale(.99); }
 
 /* ---------- Hero VIDÉO (cinématique) ---------- */
-.hero { position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; isolation:isolate; overflow:hidden; }
-.hero__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; animation:heroFade 1.6s var(--ease) both; }
-@keyframes heroFade { from{opacity:0; transform:scale(1.06);} to{opacity:1; transform:scale(1);} }
+/* background = secours poster : si la vidéo échoue (display:none en JS), l'image reste visible */
+.hero { position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; isolation:isolate; overflow:hidden; background:#0c1016 url(../images/hero.jpg) center/cover no-repeat; }
+.hero__video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; animation:heroFade 1.6s var(--ease) both, heroKen 26s ease-in-out infinite alternate; }
+@keyframes heroFade { from{opacity:0;} to{opacity:1;} }
+@keyframes heroKen { from{transform:scale(1.05);} to{transform:scale(1.13) translateY(-2%);} }
 .hero__overlay {
   position:absolute; inset:0; z-index:-1;
   background:radial-gradient(120% 90% at 50% 40%, rgba(8,12,18,.30) 0%, rgba(8,12,18,.55) 55%, rgba(8,12,18,.82) 100%);
 }
-/* grain de pellicule + barres cinéma */
+/* grain de pellicule subtil (les barres « letterbox » noires ont été retirées :
+   elles créaient une bande sombre dure en bas du hero — le « bug d'ombre ») */
 .hero__bars { position:absolute; inset:0; z-index:0; pointer-events:none;
-  background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px);
-  mix-blend-mode:overlay; opacity:.5; }
-.hero__bars::before,
-.hero__bars::after { content:""; position:absolute; left:0; right:0; height:clamp(28px,7vh,70px); background:#05080c; }
-.hero__bars::before { top:0; } .hero__bars::after { bottom:0; }
+  background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px);
+  mix-blend-mode:overlay; opacity:.4; }
+/* fondu doux du bas du hero vers la page (plus de bord net) */
+.hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:24%; z-index:0;
+  background:linear-gradient(to bottom, transparent, var(--canvas)); pointer-events:none; }
 .hero__content { position:relative; z-index:1; padding-block:9rem 7rem; max-width:880px; }
 .hero__content .eyebrow { justify-content:center; }
 .hero__content .eyebrow::before { display:none; }

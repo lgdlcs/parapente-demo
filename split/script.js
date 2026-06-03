@@ -160,4 +160,42 @@
         });
     });
   }
+
+  /* ---------- Animations d'entrée anime.js (chargé en defer) ---------- */
+  function startAnime() {
+    document.documentElement.classList.add("anime-on");
+
+    /* Hero : colonne texte en cascade + photo et badge qui montent */
+    anime.timeline({ easing: "easeOutCubic" })
+      .add({ targets: ".hero__media", opacity: [0, 1], translateX: [40, 0], scale: [0.97, 1], duration: 900 })
+      .add({ targets: ".hero__content .eyebrow", opacity: [0, 1], translateY: [18, 0], duration: 550 }, "-=700")
+      .add({ targets: ".hero__title", opacity: [0, 1], translateY: [26, 0], duration: 800 }, "-=400")
+      .add({ targets: ".hero__sub", opacity: [0, 1], translateY: [20, 0], duration: 650 }, "-=550")
+      .add({ targets: ".hero__cta", opacity: [0, 1], translateY: [18, 0], duration: 600 }, "-=480")
+      .add({ targets: ".hero__trust", opacity: [0, 1], translateY: [14, 0], duration: 550 }, "-=460")
+      .add({ targets: ".hero__badge", opacity: [0, 1], translateY: [18, 0], scale: [0.9, 1], duration: 650 }, "-=520");
+
+    /* Cards des stages : apparition décalée à l'entrée dans le viewport */
+    var cardWrap = document.getElementById("stageCards");
+    if (cardWrap && "IntersectionObserver" in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            anime({ targets: "#stageCards .card", opacity: [0, 1], translateY: [34, 0], delay: anime.stagger(130), duration: 750, easing: "easeOutCubic" });
+            cio.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      cio.observe(cardWrap);
+    } else if (cardWrap) {
+      cardWrap.querySelectorAll(".card").forEach(function (c) { c.style.opacity = 1; });
+    }
+  }
+
+  function boot() {
+    if (!reduceMotion && window.anime) startAnime();
+    else document.documentElement.classList.remove("anime-on");
+  }
+  if (document.readyState === "complete") boot();
+  else window.addEventListener("load", boot);
 })();

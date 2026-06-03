@@ -25,6 +25,11 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <!-- Animations d'entrée : anime.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js" defer></script>
+  <!-- Masque avant paint (seulement si on va animer → pas de flash) -->
+  <script>if(!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("anime-on");</script>
+
   <!-- SEO — données structurées de l'école (remplir avec les {{VAR}}) -->
   <script type="application/ld+json">
   {
@@ -83,19 +88,19 @@
   <section class="hero" id="hero">
     <div class="wrap hero__grid">
       <div class="hero__content">
-        <p class="eyebrow" data-reveal>Annecy · Haute-Savoie</p>
-        <h1 class="hero__title" data-reveal>Volez au-dessus du lac d’Annecy.</h1>
-        <p class="hero__sub" data-reveal>Baptêmes en biplace et stages de pilotage, encadrés par des moniteurs diplômés d’État. Décollage face au lac et aux sommets — le grand frisson, en toute confiance.</p>
-        <div class="hero__cta" data-reveal>
+        <p class="eyebrow">Annecy · Haute-Savoie</p>
+        <h1 class="hero__title">Volez au-dessus du lac d’Annecy.</h1>
+        <p class="hero__sub">Baptêmes en biplace et stages de pilotage, encadrés par des moniteurs diplômés d’État. Décollage face au lac et aux sommets — le grand frisson, en toute confiance.</p>
+        <div class="hero__cta">
           <a class="btn btn--accent btn--lg" href="#contact" data-prefill="Bonjour, je souhaite réserver un vol en parapente.">Réserver un vol</a>
           <a class="btn btn--outline btn--lg" href="#stages">Voir les stages</a>
         </div>
-        <p class="hero__trust" data-reveal>
+        <p class="hero__trust">
           <span class="hero__trust-stars" aria-hidden="true">★★★★★</span>
           <strong>4.9/5</strong> · 127 avis Google · École agréée FFVL
         </p>
       </div>
-      <figure class="hero__media" data-reveal>
+      <figure class="hero__media">
         <img src="../images/hero.jpg" alt="Vol en parapente biplace au-dessus des Alpes" width="1000" height="1200">
         <figcaption class="hero__badge">
           <span class="hero__badge-stars" aria-hidden="true">★★★★★</span>
@@ -148,8 +153,8 @@
         <h2 class="section__title">Choisissez votre vol.</h2>
       </div>
 
-      <div class="cards">
-        <article class="card" data-reveal>
+      <div class="cards" id="stageCards">
+        <article class="card">
           <span class="card__icon" aria-hidden="true">01</span>
           <p class="card__tag">Débutant · Dès 5 ans</p>
           <h3>Baptême en biplace</h3>
@@ -157,7 +162,7 @@
           <a class="link-arrow" href="#tarifs">Voir les formules <span aria-hidden="true">→</span></a>
         </article>
 
-        <article class="card" data-reveal>
+        <article class="card">
           <span class="card__icon" aria-hidden="true">02</span>
           <p class="card__tag">Initiation · 5 jours</p>
           <h3>Stage d'initiation</h3>
@@ -165,7 +170,7 @@
           <a class="link-arrow" href="#contact" data-prefill="Bonjour, je souhaite connaître les prochaines dates du stage d'initiation.">Demander les dates <span aria-hidden="true">→</span></a>
         </article>
 
-        <article class="card" data-reveal>
+        <article class="card">
           <span class="card__icon" aria-hidden="true">03</span>
           <p class="card__tag">Perfectionnement</p>
           <h3>Stage de progression</h3>

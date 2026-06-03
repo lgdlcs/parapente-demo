@@ -141,19 +141,48 @@
       .add({ targets: ".hero__sub", opacity: [0, 1], translateY: [20, 0], duration: 700 }, "-=550")
       .add({ targets: ".hero__cta", opacity: [0, 1], translateY: [18, 0], duration: 600 }, "-=480");
 
-    /* La voile traverse le ciel en boucle, avec tangage et roulis */
-    var glider = document.querySelector(".hero__glider");
-    if (glider) {
+    /* Deux parapentes traversent le ciel (sens opposés, profondeurs différentes) */
+    var g1 = document.querySelector(".hero__glider--1");
+    if (g1) anime({
+      targets: g1, translateX: ["-12vw", "120vw"],
+      translateY: [{ value: "-3vh", duration: 4200 }, { value: "3vh", duration: 5200 }, { value: "-1vh", duration: 4200 }],
+      rotate: [{ value: -5, duration: 3600 }, { value: 5, duration: 4600 }, { value: -2, duration: 3600 }],
+      duration: 23000, easing: "easeInOutSine", loop: true
+    });
+    var g2 = document.querySelector(".hero__glider--2");
+    if (g2) anime({
+      targets: g2, translateX: ["122vw", "-14vw"],
+      translateY: [{ value: "2vh", duration: 5000 }, { value: "-2vh", duration: 5200 }, { value: "1vh", duration: 5000 }],
+      rotate: [{ value: 4, duration: 4200 }, { value: -4, duration: 4600 }],
+      duration: 33000, delay: 3000, easing: "easeInOutSine", loop: true
+    });
+
+    /* Volée d'oiseaux : traversée + battements d'ailes */
+    var birds = document.querySelector(".hero__birds");
+    if (birds) {
       anime({
-        targets: glider,
-        translateX: ["-8vw", "118vw"],
-        translateY: [{ value: "-3vh", duration: 4200 }, { value: "3vh", duration: 5200 }, { value: "-1vh", duration: 4200 }],
-        rotate: [{ value: -5, duration: 3600 }, { value: 5, duration: 4600 }, { value: -2, duration: 3600 }],
-        duration: 18000,
-        easing: "easeInOutSine",
-        loop: true
+        targets: birds, translateX: ["-16vw", "118vw"],
+        translateY: [{ value: "4vh", duration: 6000 }, { value: "-2vh", duration: 6000 }],
+        duration: 34000, delay: 2000, easing: "easeInOutSine", loop: true
+      });
+      anime({
+        targets: ".hero__birds .bird", scaleY: [1, 0.5], direction: "alternate",
+        duration: 360, easing: "easeInOutSine", loop: true, delay: anime.stagger(90)
       });
     }
+
+    /* Snowboarder qui descend la piste, en boucle (coordonnées SVG → suit la piste) */
+    var boarder = document.querySelector(".hero__boarder");
+    if (boarder) anime({
+      targets: boarder,
+      keyframes: [
+        { translateX: 0, translateY: 0, opacity: 0, duration: 1 },
+        { opacity: 1, duration: 500 },
+        { translateX: 196, translateY: 286, duration: 4200, easing: "easeInQuad" },
+        { opacity: 0, duration: 500 }
+      ],
+      loop: true, delay: 1800
+    });
 
     /* Cards des stages : apparition décalée à l'entrée dans le viewport */
     var cardWrap = document.getElementById("stageCards");
