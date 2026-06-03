@@ -144,9 +144,6 @@ h1,h2,h3 { font-family:var(--font-display); font-weight:700; line-height:1.04; l
 .hero__bars { position:absolute; inset:0; z-index:0; pointer-events:none;
   background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px);
   mix-blend-mode:overlay; opacity:.4; }
-/* fondu doux du bas du hero vers la page (plus de bord net) */
-.hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:24%; z-index:0;
-  background:linear-gradient(to bottom, transparent, var(--canvas)); pointer-events:none; }
 .hero__content { position:relative; z-index:1; padding-block:9rem 7rem; max-width:880px; }
 .hero__content .eyebrow { justify-content:center; }
 .hero__content .eyebrow::before { display:none; }
